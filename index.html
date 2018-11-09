@@ -24,10 +24,28 @@
             });
     }
 
+    var lastTime = 0;
+    var sperd = 300;
+    var x = y = z = lastX =lastY=lastZ = 0;
     if(window.DeviceMotionEvent){
         window.addEventListener("devicemotion",function (evt) {
             var ac = evt.accelerationIncludingGravity;
-            alert(ac.x);
+            var curTime = Date.now();
+            var diffTime = curTime - lastTime;
+            if(diffTime > 120){
+                lastTime = curTime;
+                x = ac.x;
+                y = ac.y;
+                z= ac.z;
+                var s = Math.abs(x+y+z-lastX-lastY-lastZ)/diffTime * 1000;
+                if(s > sperd){
+                    alert("你摇一摇了")
+                }
+
+                lastX = x;
+                lastY = y;
+                lastZ = z;
+            }
         },false)
     }else {
         alert("不支持位置感应")
