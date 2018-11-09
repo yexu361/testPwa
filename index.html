@@ -16,8 +16,8 @@
     if(navigator.serviceWorker != null){
         navigator.serviceWorker.register('sw.js?_v='+Date.now())
             .then(function(registartion){
-                setInterval(function() {
-                    console.log('setInterval');
+                setTimeout(function() {
+                    console.log('setTimeout');
                     registartion.update();
                 }, 4000);
                 console.log('支持sw:',registartion.scope)
