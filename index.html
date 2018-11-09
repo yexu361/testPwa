@@ -8,11 +8,8 @@
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
-<h3>Hello PWA5 555</h3>
-<video id="video" autoplay style="width: 480px;height: 320px;"></video>
-<div><button onclick="openC();">打开摄像头</button></div>
-<div><button onclick="capture();">拍 照</button></div>
-<canvas  id="canvas" width="480" height="320"></canvas>
+<h3>Hello PWA5 摇一摇</h3>
+
 </body>
 <script>
     // 检测浏览器是否支持SW
@@ -27,50 +24,13 @@
             });
     }
 
-    var video = document.getElementById("video");
-    var canvas = document.getElementById("canvas");
-    var context = canvas.getContext("2d");
-    
-    function success(stream) {
-        alert("success");
-        var cUrl = window.URL || window.webkitURL;
-        video.src = cUrl.createObjectURL(stream);
-        video.play();
-    }
-    
-    function error(err) {
-        alert("访问媒体设备失败" + err.name+err.message);
-    }
-
-    function getUserMedia(constraints) {
-        alert("success1");
-        if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
-            alert("success2");
-            navigator.mediaDevices.getUserMedia(constraints).then(success).catch(error);
-        }else if (navigator.webkitGetUserMedia){
-            alert("success3");
-            navigator.webkitGetUserMedia(constraints,success,error);
-        }else if(navigator.mozGetUserMedia){
-            alert("success4");
-            navigator.mozGetUserMedia(constraints,success,error);
-        }else if(navigator.getUserMedia){
-            alert("success4");
-            navigator.getUserMedia(constraints,success,error);
-        }
-    }
-
-    function openC() {
-        alert("success##");
-        if((navigator.mediaDevices && navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia
-            || navigator.mozGetUserMedia || navigator.getUserMedia){
-            getUserMedia({video:{width:480,height:320}});
-        }else{
-            alert("不支持访问媒体设备");
-        }
-    }
-
-    function capture() {
-        context.drawImage(video,0,0,480,320);
+    if(window.DeviceMotionEvent){
+        window.addEventListener("devicemotion",function (evt) {
+            var ac = evt.accelerationIncludingGravity;
+            alert(ac.x);
+        },false)
+    }else {
+        alert("不支持位置感应")
     }
 </script>
 </html>
