@@ -1,5 +1,23 @@
 importScripts("workbox-sw.js");
-var cacheStorageKey = 'minimal-pwa-5'
+var cacheRevision = 'minimal-pwa-6';
+var cacheList=[
+    {
+        url: 'index.html',
+        revision: cacheRevision
+    },
+    {
+        url: 'main.css',
+        revision: cacheRevision
+    },
+    {
+        url: '155.png',
+        revision: cacheRevision
+    }
+]
+
+workbox.precaching.preacheAndRoute(cacheList);
+
+/*var cacheStorageKey = 'minimal-pwa-5';
 var cacheList=[
     '/',
     'index.html',
@@ -42,4 +60,4 @@ addEventListener('activate',function(e){
             return self.clients.claim()
         })
     )
-});
+});*/
