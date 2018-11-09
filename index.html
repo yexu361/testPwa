@@ -28,6 +28,7 @@
     var context = canvas.getContext("2d");
     
     function success(stream) {
+        alert("success");
         var cUrl = window.URL || window.webkitURL;
         video.src = cUrl.createObjectURL(stream);
         video.play();
