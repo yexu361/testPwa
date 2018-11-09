@@ -1,4 +1,4 @@
-importScripts("workbox-sw.js");
+/*importScripts("workbox-sw.js");
 var cacheRevision = 'minimal-pwa-6';
 var cacheList=[
     {
@@ -15,9 +15,9 @@ var cacheList=[
     }
 ]
 
-workbox.precaching.preacheAndRoute(cacheList);
+workbox.precaching.preacheAndRoute(cacheList);*/
 
-/*var cacheStorageKey = 'minimal-pwa-5';
+var cacheStorageKey = 'minimal-pwa-51';
 var cacheList=[
     '/',
     'index.html',
@@ -25,7 +25,7 @@ var cacheList=[
     '155.png'
 ]
 
-addEventListener('install',e =>{
+self.addEventListener('install',e =>{
     e.waitUntil(
         caches.open(cacheStorageKey)
             .then(cache => cache.addAll(cacheList))
@@ -33,7 +33,7 @@ addEventListener('install',e =>{
     )
 });
 
-addEventListener('fetch',function(e){
+self.addEventListener('fetch',function(e){
     e.respondWith(
         caches.match(e.request).then(function(response){
             if(response != null){
@@ -44,7 +44,7 @@ addEventListener('fetch',function(e){
     )
 });
 
-addEventListener('activate',function(e){
+self.addEventListener('activate',function(e){
     e.waitUntil(
         //获取所有cache名称
         caches.keys().then(cacheNames => {
@@ -60,4 +60,4 @@ addEventListener('activate',function(e){
             return self.clients.claim()
         })
     )
-});*/
+});
