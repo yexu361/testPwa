@@ -8,9 +8,9 @@
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
-<h3>Hello PWA555233</h3>
+<h3>Hello PWA5 </h3>
 <video id="video" autoplay style="width: 480px;height: 320px;"></video>
-<div><button onclick="open();">打开摄像头</button></div>
+<div><button onclick="openC();">打开摄像头</button></div>
 <div><button onclick="capture();">拍 照</button></div>
 <canvas  id="canvas" width="480" height="320"></canvas>
 </body>
@@ -59,7 +59,8 @@
         }
     }
 
-    function open() {
+    function openC() {
+        alert("success##");
         if((navigator.mediaDevices && navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia
             || navigator.mozGetUserMedia || navigator.getUserMedia){
             getUserMedia({video:{width:480,height:320}},success,error);
