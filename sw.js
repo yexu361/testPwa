@@ -17,7 +17,7 @@ var cacheList=[
 
 workbox.precaching.preacheAndRoute(cacheList);*/
 
-var cacheStorageKey = 'minimal-pwa-53';
+var cacheStorageKey = 'minimal-pwa-54';
 var cacheList=[
     '/',
     'index.html',
@@ -26,11 +26,11 @@ var cacheList=[
 ]
 
 self.addEventListener('install',e =>{
+    self.skipWaiting();
     e.waitUntil(
         caches.open(cacheStorageKey)
             .then(cache => cache.addAll(cacheList))
-            .then(() => self.skipWaiting())
-    )
+    );
 });
 
 self.addEventListener('fetch',function(e){
