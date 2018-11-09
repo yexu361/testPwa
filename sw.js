@@ -17,7 +17,7 @@ var cacheList=[
 
 workbox.precaching.preacheAndRoute(cacheList);*/
 
-var cacheStorageKey = 'minimal-pwa-57';
+var cacheStorageKey = 'minimal-pwa-3334';
 var cacheList=[
     '/',
     'index.html',
@@ -26,11 +26,11 @@ var cacheList=[
 ]
 
 self.addEventListener('install',e =>{
-    self.skipWaiting();
     e.waitUntil(
         caches.open(cacheStorageKey)
             .then(cache => cache.addAll(cacheList))
-    );
+            .then(() => self.skipWaiting())
+    )
 });
 
 self.addEventListener('fetch',function(e){
@@ -47,13 +47,12 @@ self.addEventListener('fetch',function(e){
 self.addEventListener('activate',function(e){
     e.waitUntil(
         //获取所有cache名称
-        caches.keys().then(cacheNames => {
+        caches.keys().then(keys => {
             return Promise.all(
                 // 获取所有不同于当前版本名称cache下的内容
-                cacheNames.filter(cacheNames => {
-                    return cacheNames !== cacheStorageKey
-                }).map(cacheNames => {
-                    return caches.delete(cacheNames)
+                keys.map(key => {
+                    if(key != cacheStorageKey)
+                        return caches.delete(key);
                 })
             )
         }).then(() => {
