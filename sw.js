@@ -1,5 +1,5 @@
 importScripts("workbox-sw.js");
-var cacheStorageKey = 'minimal-pwa-3'
+var cacheStorageKey = 'minimal-pwa-4'
 var cacheList=[
     '/',
     'index.html',
@@ -7,7 +7,7 @@ var cacheList=[
     '155.png'
 ]
 
-self.addEventListener('install',e =>{
+addEventListener('install',e =>{
     e.waitUntil(
         caches.open(cacheStorageKey)
             .then(cache => cache.addAll(cacheList))
@@ -15,7 +15,7 @@ self.addEventListener('install',e =>{
     )
 });
 
-self.addEventListener('fetch',function(e){
+addEventListener('fetch',function(e){
     e.respondWith(
         caches.match(e.request).then(function(response){
             if(response != null){
@@ -26,7 +26,7 @@ self.addEventListener('fetch',function(e){
     )
 });
 
-self.addEventListener('activate',function(e){
+addEventListener('activate',function(e){
     e.waitUntil(
         //获取所有cache名称
         caches.keys().then(cacheNames => {
