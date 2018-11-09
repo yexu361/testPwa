@@ -8,7 +8,7 @@
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
-<h3>Hello PWA5 </h3>
+<h3>Hello PWA5 555</h3>
 <video id="video" autoplay style="width: 480px;height: 320px;"></video>
 <div><button onclick="openC();">打开摄像头</button></div>
 <div><button onclick="capture();">拍 照</button></div>
@@ -42,7 +42,7 @@
         alert("访问媒体设备失败" + err.name+err.message);
     }
 
-    function getUserMedia(constraints,success,error) {
+    function getUserMedia(constraints) {
         alert("success1");
         if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
             alert("success2");
@@ -63,7 +63,7 @@
         alert("success##");
         if((navigator.mediaDevices && navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia
             || navigator.mozGetUserMedia || navigator.getUserMedia){
-            getUserMedia({video:{width:480,height:320}},success,error);
+            getUserMedia({video:{width:480,height:320}});
         }else{
             alert("不支持访问媒体设备");
         }
