@@ -17,7 +17,7 @@ var cacheList=[
 
 workbox.precaching.preacheAndRoute(cacheList);*/
 
-var cacheStorageKey = 'minimal-pwa-52';
+var cacheStorageKey = 'minimal-pwa-53';
 var cacheList=[
     '/',
     'index.html',
